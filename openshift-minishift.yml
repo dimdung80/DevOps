@@ -1,0 +1,46 @@
+C:\Users\xxxx\minishift>.\minishift.exe start --vm-driver=virtualbox
+-- Starting local OpenShift cluster using 'virtualbox' hypervisor ...
+-- Minishift VM will be configured with ...
+   Memory:    2 GB
+   vCPUs :    2
+   Disk size: 20 GB
+
+   Downloading ISO 'https://github.com/minishift/minishift-b2d-iso/releases/download/v1.2.0/minishift-b2d.iso'
+ 40.00 MiB / 40.00 MiB [===========================================================================================================================] 100.00% 0s
+-- Starting Minishift VM ....................................... OK
+-- Checking for IP address ... OK
+-- Checking if external host is reachable from the Minishift VM ...
+   Pinging 8.8.8.8 ... OK
+-- Checking HTTP connectivity from the VM ...
+   Retrieving http://minishift.io/index.html ... OK
+-- Checking if persistent storage volume is mounted ... OK
+-- Checking available disk space ... 0% used OK
+-- Downloading OpenShift binary 'oc' version 'v3.6.0'
+ 33.92 MiB / 33.92 MiB [===========================================================================================================================] 100.00% 0s-- Downloading OpenShift v3.6.0 checksums ... OK
+-- OpenShift cluster will be configured with ...
+   Version: v3.6.0
+-- Checking `oc` support for startup flags ...
+   host-config-dir ... OK
+   host-data-dir ... OK
+   host-pv-dir ... OK
+   host-volumes-dir ... OK
+   routing-suffix ... OK
+Starting OpenShift using openshift/origin:v3.6.0 ...
+Pulling image openshift/origin:v3.6.0
+Pulled 1/4 layers, 26% complete
+Pulled 2/4 layers, 63% complete
+Pulled 3/4 layers, 80% complete
+Pulled 4/4 layers, 100% complete
+Extracting
+Image pull complete                                                                                                                                             OpenShift server started.
+
+The server is accessible via web console at:
+    https://192.168.99.100:8443
+
+You are logged in as:
+    User:     developer                                                                                                                                             Password: <any value>
+
+To login as administrator:                                                                                                                                          oc login -u system:admin
+
+
+C:\Users\xxxx\minishift>
