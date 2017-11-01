@@ -1,0 +1,13 @@
+#!/bin/bash -xe
+yum update -y
+yum install -y git httpd
+chkconfig --levels 235 httpd on
+echo "# Nothing in here" > /etc/httpd/conf.d/welcome.conf
+git clone https://github.com/cloudacademy/creating-your-first-classic-load-balancer.git
+cd creating-your-first-classic-load-balancer/
+INSTANCEID=$(curl http://169.254.169.254/2016-06-30/meta-data/instance-id)
+HOSTURL=$(curl http://169.254.169.254/2016-06-30/meta-data/public-hostname)
+sed -i "s/instanceID/$INSTANCEID/g" assets/index.html
+sed -i "s/publicHostname/$HOSTURL/g" assets/index.html
+cp -f assets/index.html /var/www/html/index.html
+service httpd restart
