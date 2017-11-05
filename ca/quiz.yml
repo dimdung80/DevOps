@@ -1,0 +1,94 @@
+You are your company’s AWS cloud architect. You have created a VPC topology that consists of 3 VPCs. You have a centralised VPC (VPC-Shared) that provides shared services to the remaining 2 departmental dedicated VPCs (VPC-Dept1 and VPC-Dept2). The centralised VPC is VPC peered to both of the departmental VPCs, that is a VPC peering connection exists between VPC-Shared and VPC-Dept1, and a VPC peering connection exists between VPC-Shared and VPC-Dept2. Select the correct option from the list below. 
+
+Network traffic is possible between VPC-Shared instances and VPC-Dept1 and VPC-Dept2 instances as long as the appropriate routes and security groups are in place, but only for communication that is initiated from VPC1-Shared instances as the default peering bi-directional communication flag has been disabled.+10 
+B
+Instances within VPC-Dept1 can communicate directly with instances in VPC-Shared, as long as the appropriate routes and security groups are in place, and vice versa regardless of who initiates communication
+C
+Network traffic is possible between VPC-Shared instances and VPC-Dept1 and VPC-Dept2 instances as long as the appropriate routes and security groups are in place, but only for communication that is initiated from VPC1-Shared instances as the default peering bi-directional communication flag has been enabled.
+D
+All network communication remains blocked between all VPCs until the respective peering bi-directional communication flags are set to the appropriate setting that allows traffic to flow.
+
+The IPsec protocol suite is made up of various components covering aspects such as confidentiality, encryption, and integrity. Select the correct statement below regarding the correct configuration options for ensure IPsec confidentiality:
+
+The following protocols may be used to configure IPsec confidentiality, DES, 3DES, MD5+10 
+B
+The following protocols may be used to configure IPsec confidentiality, DES, 3DES, AES
+C
+The following protocols may be used to configure IPsec confidentiality, MD5, SHA
+D
+The following protocols may be used to configure IPsec confidentiality, PSK, MD5
+
+In your current role as the corporate network architect - you have decided to replace your existing hardware firewall appliances with a pair of Juniper SRX-Series Services Gateways. You have chosen these as AWS lists these as supportable devices for establishing IPsec connections. With this in mind, select the minimum set of options to ensure that you can establish IPsec connectivity between your on premise private corporate network and your AWS hosted VPC. Select which option is NOT required 
+
+Deploy a Customer Gateway within your VPC+10 
+B
+Configure your corporate network VPN hardware appliance to support IPsec Tunnel mode
+C
+Deploy a Customer Gateway within your corporate network
+D
+Initiate network connections from somewhere within your corporate network, this is required to bring the tunnels UP
+
+An unfortunate situation has just come to your attention. A business critical application with sensitive data running on-prem will run out of storage disk space in 24hrs. This business critical application is dependent a very large set of routes - required for integration with other system. You make a quick but well informed decision to migrate this application quickly to AWS. You are able to quickly launch a new VPC and within it equivalent infrastructure to re-home the application. In order to complete the replication of application data and ensure the application remains operational beyond the next 24hrs, select the best implementation.
+
+Within the new VPC - deploy a software based virtual router (for example a Cisco CSR). Configure with dual ENIs (external and internal), create and attach an EIP to the external ENI, Configure and setup IPsec VPN tunnels, and ensure Jumbo Frames is enabled.+10 
+B
+Within the new VPC - deploy a Virtual Private Gateway, Customer Gateway, and establish a new IPsec VPN Connection with static routing, and ensure Jumbo Frames is enabled.
+C
+Within the new VPC - establish a Direct Connect connection with max 10Gbps port speed for data replication. Establish a 802.1Q VLAN and configure a Virtual Private Gateway and Private Virtual Interface, and ensure Jumbo Frames is enabled.
+D
+Within the new VPC - deploy a Virtual Private Gateway, Customer Gateway, and establish a new IPsec VPN Connection with BGP dynamic routing
+
+Considering the rules of IPv4 subnetting, how many subnets and hosts per subnet are possible given the following network 192.168.130.130/28? 
+
+ (in this question ignore the fact that AWS reserves 5 IP addresses)
+
+16 subnets and 14 hosts per subnet+20 
+B
+32 subnets and 30 hosts per subnet
+C
+28 subnets and 30 hosts per subnet
+D
+8 subnets and 14 hosts per subnet
+
+Convert the following IPv4 address in presented in binary form, into dotted decimal form 10101100.01111011.00001101.10011101
+
+172.122.13.15+10 
+B
+173.13.13.157
+C
+172.123.157.13
+D
+172.123.13.157
+
+
+Considering your knowledge of both the OSI and TCP/IP models - select the following statement which you consider to NOT be true.
+
+
+A
+The top layer in the OSI model is named the Application layer
+
+B
+The TCP/IP Application layer maps to 2 of the OSI Layers
+
+C
+The top layer in the TCP/IP model is named the Application layer
+
+D
+The TCP/IP Application layer maps to 3 of the OSI Layers
+
+
+You have been tasked with migrating your company’s proprietary massively large dataset sorting application to AWS. The application currently runs on 4 highly spec’d servers that are in a cluster arrangement and runs 24x7, with the average CPU utilisation across any 24hr period being approx 85% - the migration of this cluster once up and running on AWS is expected to run similarly. The servers shuffle data internally and between themselves. Your company’s financial performance is entirely dependent on the speed at which it can sort your customers datasets, that is the faster a sorted result can be returned the better your company’s bottom line. Of the choices presented below, select the optimal network configuration that will ensure the best financial results for your company.
+
+
+A
+Create an autoscaled group of c4.8xlarge instances - with min 1 and max 4 - this will ensure your operational costs a minimal
+
+B
+Enable Jumbo Frames to ensure better data throughput between instances
+
+C
+Configure a CloudWatch Alarm to add more CPUs to the instances when average cluster CPU utilisation breaches 85%
+
+D
+Disable Jumbo Frames to ensure better data throughput between instances
+
