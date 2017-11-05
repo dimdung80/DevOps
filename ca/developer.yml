@@ -1,0 +1,222 @@
+# 	Preparation Exam: Certified Developer - Associate for AWS
+1. You are a cloud engineer working for a financial services group and you support several applications hosted on AWS. Your applications are heavily trafficked during the end-of-quarter processing window. One of your application teams reports poor performance and they believe the issue to be related to application scaling. You log in to the AWS CLI and retrieve the error message, which indicates an AMI-related issue. What possible workarounds could you attempt to resolve this issue? (Choose 3 answers)
+
+A: The AMI that you requested cannot be found. Create a new AMI and update the Auto Scaling group.
+
+B : The AMI requested by the Auto Scaling group is already running. Disregard the error.
+
+C : The AMI is in a pending state (either newly deployed or busy). Wait until the AMI is ready and update the Auto Scaling group.
+
+D: The value provided for the AMI is invalid. Provide the correct AMI ID and retry.
+
+2. An error has occurred in your company’s application and you are trying to retrace what happened. You come across this entry in the company’s CloudTrail logs. What events have happened, according to this log entry? (Choose 2 answers)
+
+{
+"eventVersion": "1.02",
+"userIdentity": {
+"type": "IAMUser",
+"principalId": "AIDACKCEVSQ6C2EXAMPLE",
+"arn": "arn:aws:iam::086441151436:user/AWSCloudTrail",
+"accountId": "086441151436",
+"accessKeyId": "AKIAI44QH8DHBEXAMPLE",
+"userName": "AWSCloudTrail",
+"sessionContext": {"attributes": {
+"mfaAuthenticated": "false",
+"creationDate": "2015-11-11T21:15:33Z"
+}},
+"invokedBy": "internal.amazonaws.com"
+},
+"eventTime": "2015-11-11T21:15:33Z",
+"eventSource": "kms.amazonaws.com",
+"eventName": "GenerateDataKey",
+"awsRegion": "us-west-2",
+"sourceIPAddress": "internal.amazonaws.com",
+"userAgent": "internal.amazonaws.com",
+"requestParameters": {
+"keyId": "arn:aws:kms:us-west-2:111122223333:alias/ExampleAliasForCloudTrailCMK",
+"encryptionContext": {
+"aws:cloudtrail:arn": "arn:aws:cloudtrail:us-west-2:111122223333:trail/Default",
+"aws:s3:arn": "arn:aws:s3:::example-bucket-for-CT-logs/AWSLogs/111122223333/"
+},
+"keySpec": "AES_256"
+},
+"responseElements": null,
+"requestID": "581f1f11-88b9-11e5-9c9c-595a1fb59ac0",
+"eventID": "3cdb2457-c035-4890-93b6-181832b9e766",
+"readOnly": true,
+"resources": [{
+"ARN": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+"accountId": "111122223333"
+}],
+"eventType": "AwsServiceEvent",
+"recipientAccountId": "111122223333"
+}
+
+Ans: 
+
+A: The user’s ARN was changed from “arn:aws:iam::086441151436:user/AWSCloudTrail” to “arn:aws:cloudtrail:us-west-2:111122223333:trail/Default”
+
+B: The user’s pre-defined GenerateDataKey Java function was called by AWSCloudTrail.
+
+C: CloudTrail called the AWS KMS GenerateDataKey API.
+
+D: AWS KMS created a data key under a specific CMK.
+
+3 # Your company has chosen Amazon RDS as their AWS database product. The only other product in consideration was Amazon Redshift. From this information, what are some reasonable conclusions you can make about the current data infrastructure of the company? (Choose 3 answers)
+
+A: The company currently uses a database with a common database engine.
+
+B: The Amazon RDS storage type chosen is likely to be Magnetic (standard).
+
+C: The Amazon RDS storage type chosen is likely to be General Purpose (SSD).
+
+D: The company is interested in data warehousing.
+
+You are meeting with a client and discussing migrating their applications to the cloud. The client is very thorough in their examination and is concerned about costs, and more specifically, hidden costs. You explain that several key AWS services have no charge. Which AWS services do not have a charge? (Choose 3 answers)
+
+
+A
+Elastic Beanstalk
+
+B
+Autoscaling
+
+C
+Elastic Load Balancer
+
+D
+CloudFormation
+#########################
+After you launch this AWS CloudFormation template and assuming it creates its stack successfully, what are you able to do?
+
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "AppServerRootRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "ec2.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/"
+      }
+    },
+    "AppServerRolePolicies": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "AppServerS3Perms",
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "s3:*",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "AppBucket"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "Roles": [
+          {
+            "Ref": "AppServerRootRole"
+          }
+        ]
+      }
+    },
+    "AppServerInstanceProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Path": "/",
+        "Roles": [
+          {
+            "Ref": "AppServerRootRole"
+          }
+        ]
+      }
+    },
+    "AppBucket": {
+      "Type": "AWS::S3::Bucket"
+    }
+  },
+  "Outputs": {
+    "BucketName": {
+      "Value": {
+        "Ref": "AppBucket"
+      }
+    },
+    "InstanceProfileName": {
+      "Value": {
+        "Ref": "AppServerInstanceProfile"
+      }
+    }
+  }
+}
+A
+You now have only view and download access to a new Amazon EC2 instance.
+
+B
+You now have unrestricted access to a new Amazon EC2 instance.
+
+C
+You now have only view and download access to a new Amazon S3 bucket.
+
+D
+You now have unrestricted access to a new Amazon S3 bucket.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Your development team is helping with migrating your company to the cloud. They are working with configuring EC2 instances with bootstrap scripts using user data. What specifically can you do with user data? (Choose 2 answers)
+
+A
+You can retrieve data about the user of the EC2 instance.
+
+B
+You can retrieve the local IP address of the instance using http://169.254.169.254/latest/user-data.
+
+C
+You can specify parameters for configuring your instance.
+
+D
+You build generic AMIs that can be modified by configuration files supplied at launch time.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+
